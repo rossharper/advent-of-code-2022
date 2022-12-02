@@ -1,0 +1,8 @@
+go 1.19
+
+use (
+    ./01-01-calories
+    ./01-02-caloriesTopThree
+    ./Template
+    ./Utils
+)

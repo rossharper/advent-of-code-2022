@@ -1,4 +1,4 @@
-package main
+package utils
 
 // An IntHeap is a max-heap of ints.
 type IntHeap []int

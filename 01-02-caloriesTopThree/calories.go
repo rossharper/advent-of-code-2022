@@ -1,6 +1,7 @@
 package main
 
 import (
+	"advent/utils"
 	"bufio"
 	"container/heap"
 	"fmt"
@@ -29,7 +30,7 @@ func sumOfTopThreeHighestCalorieCounts(filename string) int {
 
 	currentCalories := 0
 
-	h := &IntHeap{}
+	h := &utils.IntHeap{}
 	heap.Init(h)
 	for scanner.Scan() {
 		line := scanner.Text()
