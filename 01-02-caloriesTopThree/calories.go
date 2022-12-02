@@ -9,12 +9,6 @@ import (
 	"strconv"
 )
 
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
-
 func main() {
 
 	result := sumOfTopThreeHighestCalorieCounts("input.txt")
@@ -24,7 +18,7 @@ func main() {
 
 func sumOfTopThreeHighestCalorieCounts(filename string) int {
 	f, err := os.Open(filename)
-	check(err)
+	utils.Check(err)
 
 	scanner := bufio.NewScanner(f)
 

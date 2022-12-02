@@ -1,17 +1,12 @@
 package main
 
 import (
+	"advent/utils"
 	"bufio"
 	"fmt"
 	"os"
 	"strconv"
 )
-
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
 
 func main() {
 	result := solution("input.txt")
@@ -21,7 +16,7 @@ func main() {
 
 func solution(filename string) int {
 	f, err := os.Open(filename)
-	check(err)
+	utils.Check(err)
 
 	scanner := bufio.NewScanner(f)
 
