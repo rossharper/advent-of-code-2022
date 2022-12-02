@@ -6,4 +6,5 @@ use (
     ./Template
     ./Utils
     ./02-01
+    ./02-02
 )
