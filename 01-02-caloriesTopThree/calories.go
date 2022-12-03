@@ -24,7 +24,7 @@ func sumOfTopThreeHighestCalorieCounts(filename string) int {
 
 	currentCalories := 0
 
-	h := &utils.IntHeap{}
+	h := &utils.IntMaxHeap{}
 	heap.Init(h)
 	for scanner.Scan() {
 		line := scanner.Text()

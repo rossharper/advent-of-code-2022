@@ -1,7 +1,8 @@
 package utils
 
-// An IntHeap is a max-heap of ints.
 type IntHeap []int
+type IntMinHeap struct{ IntHeap } // Min-heap of Ints
+type IntMaxHeap struct{ IntHeap } // Max-heap of Ints
 
 func (h IntHeap) Len() int           { return len(h) }
 func (h IntHeap) Less(i, j int) bool { return h[i] > h[j] }
@@ -20,3 +21,6 @@ func (h *IntHeap) Pop() any {
 	*h = old[0 : n-1]
 	return x
 }
+
+func (h IntMinHeap) Less(i, j int) bool { return h.IntHeap[i] < h.IntHeap[j] }
+func (h IntMaxHeap) Less(i, j int) bool { return h.IntHeap[i] > h.IntHeap[j] }
