@@ -19,7 +19,7 @@ func TestFindCommonItems(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.input, func(t *testing.T) {
-			ans, _ := findCommon(tt.input)
+			ans := findCommon(tt.input)
 			if ans != tt.want {
 				t.Errorf("got %c, want %c", ans, tt.want)
 			}
@@ -61,6 +61,78 @@ func TestPartOne(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.file, func(t *testing.T) {
 			ans := solution(tt.file)
+			if ans != tt.want {
+				t.Errorf("got %d, want %d", ans, tt.want)
+			}
+		})
+	}
+}
+
+func TestFindBadge(t *testing.T) {
+	var tests = []struct {
+		input []string
+		want  int
+	}{
+		{[]string{
+			"vJrwpWtwJgWrhcsFMMfFFhFp",
+			"jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
+			"PmmdzqPrVvPwwTWBwg",
+		}, 'r'},
+		{[]string{
+			"wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn",
+			"ttgJtRGJQctTZtZT",
+			"CrZsJsPPZsGzwwsLwLmpwMDw",
+		}, 'Z'},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.input[0], func(t *testing.T) {
+			ans := findBadge(tt.input)
+			if ans != tt.want {
+				t.Errorf("got %c, want %c", ans, tt.want)
+			}
+		})
+	}
+}
+
+func TestFindBadgePriorities(t *testing.T) {
+	var tests = []struct {
+		input []string
+		want  int
+	}{
+		{[]string{
+			"vJrwpWtwJgWrhcsFMMfFFhFp",
+			"jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
+			"PmmdzqPrVvPwwTWBwg",
+		}, 18},
+		{[]string{
+			"wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn",
+			"ttgJtRGJQctTZtZT",
+			"CrZsJsPPZsGzwwsLwLmpwMDw",
+		}, 52},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.input[0], func(t *testing.T) {
+			ans := findBadgePriority(tt.input)
+			if ans != tt.want {
+				t.Errorf("got %d, want %d", ans, tt.want)
+			}
+		})
+	}
+}
+
+func TestPartTwo(t *testing.T) {
+	var tests = []struct {
+		file string
+		want int
+	}{
+		{"partOneTest.txt", 70},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.file, func(t *testing.T) {
+			ans := solutionTwo(tt.file)
 			if ans != tt.want {
 				t.Errorf("got %d, want %d", ans, tt.want)
 			}
