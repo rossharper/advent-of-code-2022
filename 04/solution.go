@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 )
 
 func main() {
@@ -20,30 +21,37 @@ func solution(filename string) int {
 
 	scanner := bufio.NewScanner(f)
 
-	result := 0
-	current := 0
+	sum := 0
 
 	for scanner.Scan() {
 		line := scanner.Text()
 
-		if line == "" {
-			if result < current {
-				result = current
+		if line != "" {
+			if contained(line) {
+				sum++
 			}
-			current = 0
-		} else {
-			newVal, _ := strconv.Atoi(line)
-			current += newVal
-		}
-	}
-
-	if current > 0 {
-		if result < current {
-			result = current
 		}
 	}
 
 	f.Close()
 
-	return result
+	return sum
+}
+
+func contained(input string) bool {
+	pairs := strings.Split(input, ",")
+	left := pairs[0]
+	right := pairs[1]
+
+	return containedWithin(left, right) || containedWithin(right, left)
+}
+
+func containedWithin(s1 string, s2 string) bool {
+	left := strings.Split(s1, "-")
+	right := strings.Split(s2, "-")
+	leftStart, _ := strconv.Atoi(left[0])
+	leftEnd, _ := strconv.Atoi(left[1])
+	rightStart, _ := strconv.Atoi(right[0])
+	rightEnd, _ := strconv.Atoi(right[1])
+	return leftStart >= rightStart && leftEnd <= rightEnd
 }
