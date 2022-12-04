@@ -20,7 +20,7 @@ func TestFindCommonItems(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.input, func(t *testing.T) {
 			ans, _ := findCommon(tt.input)
-			if ans != int32(tt.want) {
+			if ans != tt.want {
 				t.Errorf("got %c, want %c", ans, tt.want)
 			}
 		})
@@ -43,8 +43,8 @@ func TestPriorites(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.input, func(t *testing.T) {
 			ans := findPriority(tt.input)
-			if ans != int32(tt.want) {
-				t.Errorf("got %c, want %c", ans, tt.want)
+			if ans != tt.want {
+				t.Errorf("got %d, want %d", ans, tt.want)
 			}
 		})
 	}

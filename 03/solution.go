@@ -34,30 +34,35 @@ func solution(filename string) int {
 	return sum
 }
 
-func findPriority(items string) int32 {
+func findPriority(items string) int {
 	_, ans := findCommon(items)
 	return ans
 }
 
-func findCommon(items string) (int32, int32) {
-	var itemTypeCounts [52]byte
+func findCommon(items string) (int, int) {
 	compLen := len(items) / 2
+	var left = utils.IntSet{}
+	var right = utils.IntSet{}
 	for i, c := range items {
-
-		var itemIndex int32 = 0
-		if c >= 'a' {
-			itemIndex = c - 'a'
-		} else {
-			itemIndex = (c - 'A') + 26
-		}
-
 		if i < compLen {
-			itemTypeCounts[itemIndex]++
+			left.Add(int(c))
 		} else {
-			if itemTypeCounts[itemIndex] > 0 {
-				return c, itemIndex + 1
-			}
+			right.Add(int(c))
 		}
 	}
+	intersected := left.Intersect(right)
+	for k := range intersected {
+		return k, priority(k)
+	}
 	return -1, -1
+}
+
+func priority(c int) int {
+	var priority = 0
+	if c >= 'a' {
+		priority = c - 'a'
+	} else {
+		priority = (c - 'A') + 26
+	}
+	return priority + 1
 }
